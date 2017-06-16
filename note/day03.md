@@ -1,0 +1,26 @@
+---
+layout: post
+title:  "imooc-app day03 项目结构完善"
+categories: vue
+tags:  项目
+---
+
+* content
+{:toc}
+使用Vue2.x Vuex webpack axios仿慕课网app。第三天。
+完善项目结构，区分模块
+
+
+
+
+##完善结构
+完善目录结构
+```
+├── src/
+│   ├── assets/           //引入静态资源      
+│   ├── components/       //公用组件
+│   ├── router/           //路由管理
+│   ├── service/          //api服务管理及缓存管理
+│   ├── store/            //vue状态管理
+│   └── pages/             //路由页面
+```

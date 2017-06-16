@@ -1,0 +1,58 @@
+<template lang="html">
+  <header>
+    <span class="page-name" >{{title}}</span>
+    <div class="function">
+      <svg class="icon icon-search" aria-hidden="true">
+          <use xlink:href="#icon-search"></use>
+      </svg>
+      <svg class="icon icon-email" aria-hidden="true">
+          <use xlink:href="#icon-email"></use>
+      </svg>
+      <svg class="icon icon-cart" aria-hidden="true">
+          <use xlink:href="#icon-cart"></use>
+      </svg>
+    </div>
+  </header>
+</template>
+
+<script>
+export default {
+  name: 'headTitle',
+  props: ['title']
+}
+</script>
+
+<style lang="scss" scoped>
+  @import "src/base/base";
+  header{
+    position: fixed;
+    display: flex;
+    justify-content: space-between;
+    height: 118*$px;
+    width: 100%;
+    z-index: 100;
+    line-height: 118*$px;
+    color: white;
+    background-color: #34394b;
+  }
+  .page-name{
+    margin-left: 37*$px;
+    font-size: 32*$px;
+  }
+  .function{
+    height: 100%;
+    width: 356*$px;
+    display: flex;
+    justify-content: space-around;;
+    align-items:center;
+  }
+  .icon-search{
+    width: 33*$px;
+  }
+  .icon-email{
+    width: 37*$px;
+  }
+  .icon-cart{
+    width: 37*$px;
+  }
+</style>
