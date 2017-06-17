@@ -191,15 +191,15 @@ export default {
         this.onTopLoading = true
         this.topCB()
         return
+      } else {
+        this.topLoadEnd()
       }
     },
     topLoadEnd () {
-      setTimeout(() => {
-        this.onTopLoading = false
-        this.fromTop = false
-        this.startY = 0
-        this.pullMove = `transform:translate3d(0,0,0)`
-      }, 500)
+      this.onTopLoading = false
+      this.fromTop = false
+      this.startY = 0
+      this.pullMove = `transform:translate3d(0,0,0)`
     },
     topAllEnd () {
       setTimeout(() => {

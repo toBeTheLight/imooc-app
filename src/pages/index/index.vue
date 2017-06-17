@@ -1,15 +1,15 @@
 <template lang="html">
   <div class="index">
     <headTitle :title="title"></headTitle>
-    <pullLoad :topCB="refreshAll" :bottomCB="loadBottom" ref="pullLoad">
-      <div class="content">
-      </div>
+    <pullLoad :topCB="refreshAll"  ref="pullLoad">
+      <swiper></swiper>
     </pullLoad>
   </div>
 </template>
 
 <script>
   import {headTitle, pullLoad} from '../../components'
+  import swiper from './children/swiper'
   export default {
     name: 'index',
     data () {
@@ -35,14 +35,11 @@
     },
     components: {
       headTitle,
-      pullLoad
+      pullLoad,
+      swiper
     }
 }
 </script>
 
 <style lang="scss" scoped>
-@import "../../base/base.scss";
-.content{
-  height: 800px;
-}
 </style>

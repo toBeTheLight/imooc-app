@@ -1,3 +1,1 @@
-export default {
-
-}
+export const GET_INDEX_SWIPER = 'GET_INDEX_SWIPER'
