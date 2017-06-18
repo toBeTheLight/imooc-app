@@ -18,6 +18,12 @@
     height: 250*$px;
     width: 750*$px;
   }
+  .swiper-pagination{
+    box-sizing: border-box;
+    padding-right: 20*$px;
+    font-size: 0;
+    text-align: right;
+  }
   img{
     height: 100%;
   }
@@ -31,7 +37,9 @@ import { mapGetters, mapActions } from 'vuex'
 export default {
   name: 'swiper',
   data () {
-    return {}
+    return {
+      swiper: null
+    }
   },
   computed: {
     ...mapGetters([
@@ -43,22 +51,27 @@ export default {
       'getIndexSwiper'
     ]),
     init: function () {
+      console.log(this.swiper)
+      if (this.swiper) {
+        this.swiper.update()
+      }
       let selector = this.$el.className
-      console.log(selector, Swiper)
       /* eslint-disable */
-      var swiper = new Swiper('.' + selector, {
+      this.swiper = new Swiper('.' + selector, {
         autoplay: 3000,
         speed: 800,
         loop: true,
-        autoplayDisableOnInteraction : false
+        // autoplayDisableOnInteraction : false,
+        pagination : '.swiper-pagination'
       })
       /* eslint-enable */
     }
   },
   watch: {
     indexSwiper: function (value, oldValue) {
-      console.log(value)
-      this.init()
+      this.$nextTick(function () {
+        this.init()
+      })
     }
   },
   created () {

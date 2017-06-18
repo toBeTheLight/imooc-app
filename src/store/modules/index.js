@@ -1,6 +1,9 @@
 // api服务
-import index from '../../service/index/getData.js'
+import indexData from '../../service/index/getData.js'
 import * as types from '../mutation-types.js'
+// storageBeforeRequest 先读取localStorage,再请求数据，并存入localStorage
+import {storageBeforeRequest} from '../baseTool.js'
+
 // state
 const state = {
   indexSwiper: null
@@ -11,16 +14,11 @@ const getters = {
 }
 // actions
 const actions = {
-  getIndexSwiper ({commit}) {
-    commit(types.GET_INDEX_SWIPER, index.getIndexSwiper())
-    // index.getIndexSwiper(({result}) => {
-    //   commit(types.GET_INDEX_SWIPER, result)
-    // }, (error) => { console.log(error) })
-  }
+  getIndexSwiper: storageBeforeRequest(types.INDEX_SWIPER, indexData.getIndexSwiper)
 }
 // mutations
 const mutations = {
-  [types.GET_INDEX_SWIPER] (state, {result}) {
+  [types.INDEX_SWIPER] (state, result) {
     state.indexSwiper = result
   }
 }

@@ -21,7 +21,13 @@ const getIndexSwiper = (suc, fal) => {
       }
     ]
   }
-  return result
+  var random = Math.random()
+  console.log(random)
+  if (random > 0.5) {
+    suc(result)
+  } else {
+    fal()
+  }
 }
 
 export default {

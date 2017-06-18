@@ -1,1 +1,1 @@
-export const GET_INDEX_SWIPER = 'GET_INDEX_SWIPER'
+export const INDEX_SWIPER = 'INDEX_SWIPER'
