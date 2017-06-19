@@ -2,15 +2,9 @@
   <header>
     <span class="page-name" >{{title}}</span>
     <div class="function">
-      <svg class="icon icon-search" aria-hidden="true">
-          <use xlink:href="#icon-search"></use>
-      </svg>
-      <svg class="icon icon-email" aria-hidden="true">
-          <use xlink:href="#icon-email"></use>
-      </svg>
-      <svg class="icon icon-cart" aria-hidden="true">
-          <use xlink:href="#icon-cart"></use>
-      </svg>
+      <i class="iconfont icon-search"></i>
+      <i class="iconfont icon-email"></i>
+      <i class="iconfont icon-cart"></i>
     </div>
   </header>
 </template>

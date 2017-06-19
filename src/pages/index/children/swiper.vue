@@ -51,7 +51,6 @@ export default {
       'getIndexSwiper'
     ]),
     init: function () {
-      console.log(this.swiper)
       if (this.swiper) {
         this.swiper.update()
       }
@@ -73,6 +72,9 @@ export default {
         this.init()
       })
     }
+  },
+  updated () {
+    console.log('updated')
   },
   created () {
     this.getIndexSwiper()

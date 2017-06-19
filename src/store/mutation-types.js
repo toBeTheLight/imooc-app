@@ -1,1 +1,3 @@
 export const INDEX_SWIPER = 'INDEX_SWIPER'
+export const ACCOUNT_TITLE = 'ACCOUNT_TITLE'
+export const SOURCE_URL = 'SOURCE_URL'

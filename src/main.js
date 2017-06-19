@@ -6,8 +6,8 @@ import router from './router'
 import store from './store'
 import FastClick from 'fastclick'
 import './assets/script/rem'
-import './assets/script/iconfont'
-import 'normalize.css'
+import './assets/style/reset.css'
+import './assets/fonts/iconfont.css'
 import './assets/style/base.css'
 
 Vue.config.productionTip = false

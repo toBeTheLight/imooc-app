@@ -6,7 +6,16 @@
 
 <script>
 export default {
-  name: 'app'
+  name: 'app',
+  methods: {
+    getsessionID () {
+      this.$router.push('/account')
+    }
+  },
+  created () {
+    console.log(1)
+    this.getsessionID()
+  }
 }
 </script>
 
