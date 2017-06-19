@@ -22,12 +22,12 @@ export default new Router({
         {
           path: '/account/login',
           name: 'login',
-          component: resolve => require(['@/pages/account/children/login.vue'], resolve)
+          component: require('@/pages/account/children/login.vue')
         },
         {
           path: '/account/reg',
           name: 'reg',
-          component: resolve => require(['@/pages/account/children/reg.vue'], resolve)
+          component: require('@/pages/account/children/reg.vue')
         }
       ]
     },
