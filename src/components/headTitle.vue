@@ -24,7 +24,7 @@ export default {
     justify-content: space-between;
     height: 118*$px;
     width: 100%;
-    z-index: 100;
+    z-index: 10;
     line-height: 118*$px;
     color: white;
     background-color: #34394b;

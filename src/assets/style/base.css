@@ -15,3 +15,15 @@ p{
   fill: currentColor;
   overflow: hidden;
 }
+/* router过渡动画*/
+.rightbottomopacity-enter-active,
+.rightbottomopacity-leave-active{
+  transition: all .5s ease;
+}
+.rightbottomopacity-enter{
+  transform: translate3d(100%, 0, 0);
+}
+.rightbottomopacity-leave-to{
+  transform: translate3d(0, 100%, 0);
+  opacity: 0;
+}
