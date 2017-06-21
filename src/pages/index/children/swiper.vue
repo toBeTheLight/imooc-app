@@ -74,7 +74,6 @@ export default {
     }
   },
   updated () {
-    console.log('updated')
   },
   created () {
     this.getIndexSwiper()

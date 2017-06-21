@@ -17,10 +17,7 @@ const storageBeforeRequest = (type, request) => {
           setStorage(type, res.result)
         }
       } catch (err) {
-        console.log(err)
-        console.log(!getStorage(type) && number < 6)
         if (!getStorage(type) && number < 6) {
-          console.log('go on')
           setTimeout(() => {
             tryRequest()
             time = time * 3

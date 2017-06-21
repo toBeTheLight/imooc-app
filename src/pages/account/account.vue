@@ -68,7 +68,6 @@ export default {
   watch: {
   },
   beforeRouteEnter (to, from, next) {
-    console.log(from.path)
     next()
   }
 }
