@@ -222,7 +222,6 @@ export default {
   },
   watch: {
     topAllLoad: function (value) {
-      console.log(this.topAllLoad)
       if (value) {
         this.destroyTopEvent()
       }
