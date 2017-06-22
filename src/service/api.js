@@ -15,3 +15,12 @@ export const indexSwiper = {
     }
   ]
 }
+export const userState = {
+  'state': 1,
+  'result': {
+    'sessionID': '1234567890',
+    'userinfo': {
+      'username': 'admin'
+    }
+  }
+}

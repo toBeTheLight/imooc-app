@@ -14,7 +14,7 @@ import * as allData from '../api.js'
 //   }
 // }
 
-const getIndexSwiper = (suc) => {
+const getIndexSwiper = () => {
   return new Promise((resolve, reject) => {
     const random = Math.random()
     setTimeout(() => {

@@ -5,11 +5,32 @@
 </template>
 
 <script>
+import {getLocal, getSession} from './service/storage.js'
+import * as types from './store/mutation-types.js'
+import * as common from './service/common/getData.js'
+import {mapMutations} from 'vuex'
 export default {
   name: 'app',
   methods: {
-    getsessionID () {
-      this.$router.push('/account')
+    ...mapMutations({
+      setUserState: types.USER_STATE
+    }),
+    async getsessionID () {
+      // 无sessionID即当前未登录过
+      // 请求服务器查看是否登录未过期
+      if (!getSession(types.USER_STATE) && !getLocal(types.USER_INFO)) {
+        try {
+          const res = await common.getUserState()
+          console.log('登录成功')
+          // 服务器登录状态
+          if (res.state === 1) {}
+          this.setUserState(res.result)
+          this.$router.push('/index')
+        } catch (err) {
+          this.$router.push('/account')
+          console.log(err)
+        }
+      }
     }
   },
   created () {
@@ -23,11 +44,5 @@ export default {
   width: 100%;
   height: 100%;
   overflow: hidden;
-}
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .5s;
-}
-.fade-enter, .fade-leave-to /* .fade-leave-active in <2.1.8 */ {
-  opacity: 0;
 }
 </style>
