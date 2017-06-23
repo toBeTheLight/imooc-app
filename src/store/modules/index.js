@@ -2,7 +2,7 @@
 import indexData from '../../service/index/getData.js'
 import * as types from '../mutation-types.js'
 // storageBeforeRequest 先读取localStorage,再请求数据，并存入localStorage
-import {storageBeforeRequest} from '../baseTool.js'
+import {storageBeforeRequest} from '../../base/baseTool.js'
 
 // state
 const state = {
