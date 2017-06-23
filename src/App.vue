@@ -18,18 +18,27 @@ export default {
     async getsessionID () {
       // 无sessionID即当前未登录过
       // 请求服务器查看是否登录未过期
-      if (!getSession(types.USER_STATE) && !getLocal(types.USER_INFO)) {
+      if (!getSession(types.USER_STATE) || !getLocal(types.USER_INFO)) {
         try {
           const res = await common.getUserState()
-          console.log('登录成功')
           // 服务器登录状态
-          if (res.state === 1) {}
-          this.setUserState(res.result)
-          this.$router.push('/index')
+          if (res.state === 1) {
+            console.log('服务器状态未过期，自动登录')
+            this.setUserState(res.result)
+            this.$router.push('/index')
+          } else {
+            console.log('服务器状态已过期，请重新登录')
+            this.$router.push('/account')
+          }
         } catch (err) {
+          console.log('服务器状态已过期，请重新登录')
           this.$router.push('/account')
           console.log(err)
         }
+      } else {
+        console.log('本地数据完整，自动登录')
+        this.setUserState({userinfo: JSON.parse(getLocal(types.USER_INFO))})
+        this.$router.push('/index')
       }
     }
   },

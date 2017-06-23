@@ -1,7 +1,6 @@
 const setLocal = (name, value) => {
   if (!name) { return null }
   if (!value) { return null }
-  value = JSON.stringify(value)
   window.localStorage.setItem(`imooc${name}`, value)
 }
 const getLocal = (name) => {
@@ -15,7 +14,6 @@ const removeLocal = (name) => {
 const setSession = (name, value) => {
   if (!name) { return null }
   if (!value) { return value }
-  value = JSON.stringify(value)
   window.sessionStorage.setItem(`imooc${name}`, value)
 }
 const getSession = (name) => {

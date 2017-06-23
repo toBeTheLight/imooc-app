@@ -8,8 +8,12 @@ export default {
   },
   // 记录用户信息并缓存sessionID
   [types.USER_STATE] (state, {sessionID, userinfo}) {
-    state.userinfo = userinfo
-    setLocal(types.USER_INFO, userinfo)
-    setSession(types.USER_STATE, sessionID)
+    if (userinfo) {
+      state.userinfo = userinfo
+      setLocal(types.USER_INFO, JSON.stringify(userinfo))
+    }
+    if (sessionID) {
+      setSession(types.USER_STATE, sessionID)
+    }
   }
 }

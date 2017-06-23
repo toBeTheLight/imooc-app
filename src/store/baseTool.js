@@ -11,12 +11,12 @@ const storageBeforeRequest = (type, request) => {
     const tryRequest = async () => {
       try {
         const res = await request()
-        if (JSON.stringify(res.result) === JSON.stringify(getLocal(type))) {
+        if (JSON.stringify(res.result) === getLocal(type)) {
           return
         }
         if (res.state === 1) {
           commit(type, res.result)
-          setLocal(type, res.result)
+          setLocal(type, JSON.stringify(res.result))
         }
       } catch (err) {
         if (!getLocal(type) && number < 6) {
