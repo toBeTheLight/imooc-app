@@ -32,7 +32,7 @@ export default {
           }
         } catch (err) {
           console.log('服务器状态已过期，请重新登录')
-          this.$router.push(to)
+          this.$router.push('/account')
           console.log(err)
         }
       } else {
@@ -55,7 +55,7 @@ export default {
         }
       } catch (err) {
         console.log('服务器状态已过期，请重新登录')
-        this.$router.push(to)
+        this.$router.push('/account')
         console.log(err)
       }
     }
