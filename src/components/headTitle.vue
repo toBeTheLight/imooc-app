@@ -2,9 +2,15 @@
   <header>
     <span class="page-name" >{{title}}</span>
     <div class="function">
-      <i class="iconfont icon-search"></i>
-      <i class="iconfont icon-email"></i>
-      <i class="iconfont icon-cart"></i>
+      <router-link to="search">
+        <i class="iconfont icon-search"></i>
+      </router-link>
+      <router-link to="message">
+        <i class="iconfont icon-email"></i>
+      </router-link>
+      <router-link to="cart">
+        <i class="iconfont icon-cart"></i>
+      </router-link>
     </div>
   </header>
 </template>
