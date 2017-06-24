@@ -15,6 +15,10 @@ p{
   fill: currentColor;
   overflow: hidden;
 }
+.iconfont{
+  color: white;
+  font-size: .32rem;
+}
 /* router过渡动画*/
 .rightbottomopacity-enter-active,
 .rightbottomopacity-leave-active{

@@ -43,9 +43,6 @@
   50%{width: 30*$px}
   to{width: 4*$px}
 }
-.touch-area{
-  color: #b7bbbf;
-}
 .state{
   height: 118*$px;
   display: flex;
@@ -82,10 +79,12 @@
 }
 .state-message{
   width: 145*$px;
+  color: #b7bbbf;
   font-size: 25*$px;
 }
 .bottom-message{
   font-size: 25*$px;
+  color: #b7bbbf;
   height: 3.52em;
   line-height: 3.52em;
   text-align: center;

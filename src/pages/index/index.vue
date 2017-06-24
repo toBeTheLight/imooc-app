@@ -1,8 +1,9 @@
 <template lang="html">
   <div class="index">
     <headTitle :title="title"></headTitle>
-    <pullLoad :topCB="refreshAll"  ref="pullLoad">
+    <pullLoad :topCB="refreshAll" :bottomCB="loadBottom" ref="pullLoad">
       <swiper></swiper>
+      <indexNav></indexNav>
     </pullLoad>
   </div>
 </template>
@@ -10,6 +11,7 @@
 <script>
   import {headTitle, pullLoad} from '../../components'
   import swiper from './children/swiper'
+  import indexNav from './children/indexNav'
   export default {
     name: 'index',
     data () {
@@ -36,10 +38,14 @@
     components: {
       headTitle,
       pullLoad,
-      swiper
+      swiper,
+      indexNav
     }
 }
 </script>
 
 <style lang="scss" scoped>
+  .index{
+    background-color: #f3f5f7;
+  }
 </style>

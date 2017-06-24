@@ -47,12 +47,12 @@ export default {
     align-items:center;
   }
   .icon-search{
-    width: 33*$px;
+    font-size: 33*$px;
   }
   .icon-email{
-    width: 37*$px;
+    font-size: 34*$px;
   }
   .icon-cart{
-    width: 37*$px;
+    font-size: 34*$px;
   }
 </style>
