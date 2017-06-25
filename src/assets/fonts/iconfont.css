@@ -1,10 +1,10 @@
 
 @font-face {font-family: "iconfont";
-  src: url('iconfont.eot?t=1498321179846'); /* IE9*/
-  src: url('iconfont.eot?t=1498321179846#iefix') format('embedded-opentype'), /* IE6-IE8 */
-  url('iconfont.woff?t=1498321179846') format('woff'), /* chrome, firefox */
-  url('iconfont.ttf?t=1498321179846') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
-  url('iconfont.svg?t=1498321179846#iconfont') format('svg'); /* iOS 4.1- */
+  src: url('iconfont.eot?t=1498358667874'); /* IE9*/
+  src: url('iconfont.eot?t=1498358667874#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('iconfont.woff?t=1498358667874') format('woff'), /* chrome, firefox */
+  url('iconfont.ttf?t=1498358667874') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+  url('iconfont.svg?t=1498358667874#iconfont') format('svg'); /* iOS 4.1- */
 }
 
 .iconfont {
@@ -15,9 +15,13 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-home:before { content: "\e603"; }
+
 .icon-more:before { content: "\e677"; }
 
 .icon-guanbifuzhi:before { content: "\e633"; }
+
+.icon-downloadzhuanhuan:before { content: "\e618"; }
 
 .icon-question:before { content: "\e63e"; }
 
@@ -30,6 +34,10 @@
 .icon-cart:before { content: "\e65a"; }
 
 .icon-iconway:before { content: "\e629"; }
+
+.icon-user:before { content: "\e613"; }
+
+.icon-class:before { content: "\e606"; }
 
 .icon-shizhan:before { content: "\e64b"; }
 

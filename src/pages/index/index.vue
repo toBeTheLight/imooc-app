@@ -5,11 +5,12 @@
       <swiper></swiper>
       <indexNav></indexNav>
     </pullLoad>
+    <footerNav :title="title"></footerNav>
   </div>
 </template>
 
 <script>
-  import {headTitle, pullLoad} from '../../components'
+  import {headTitle, pullLoad, footerNav} from '../../components'
   import swiper from './children/swiper'
   import indexNav from './children/indexNav'
   export default {
@@ -39,7 +40,8 @@
       headTitle,
       pullLoad,
       swiper,
-      indexNav
+      indexNav,
+      footerNav
     }
 }
 </script>
