@@ -19,7 +19,7 @@
     width: 100%;
     height: 100%;
     padding-top: 22*$px;
-    background-image: url(../../assets/images/account-bg.jpg);
+    background-image: url(../../assets/images/account/bg.jpg);
     background-size: 300%;
     background-color: #111A25;
   }
