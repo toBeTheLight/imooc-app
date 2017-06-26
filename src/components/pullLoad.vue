@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="touch-area" :style="pullMove">
-    <div v-if="topCB">
+    <div v-if="topCB" class="state-wrapper" :style="pullMoveHeight" ref="topWrapper">
       <div v-show="topState=='pull'" class="state">
         <div class="pull">
           <i></i>
@@ -43,8 +43,15 @@
   50%{width: 30*$px}
   to{width: 4*$px}
 }
-.state{
+.state-wrapper{
+  position: relative;
   height: 118*$px;
+}
+.state{
+  position: absolute;
+  height: 118*$px;
+  width: 100%;
+  bottom: 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -108,10 +115,12 @@ export default {
   },
   data () {
     return {
+      scrollTarget: null,
       pullDistanceCopy: 0,
       fromTop: false,
       startY: '',
       pullMove: '',
+      pullMoveHeight: '',
       topState: 'pull',
       onTopLoading: false,
       topAllLoad: false,
@@ -122,6 +131,17 @@ export default {
   computed: {
   },
   methods: {
+    getScrollEl (el) {
+      let target = el
+      while (target.nodeName !== 'HTML' && target.nodeName !== 'BODY' && target.nodeType === 1) {
+        let overflowY = window.getComputedStyle(target).overflowY
+        if (overflowY === 'auto' || overflowY === 'scroll') {
+          return target
+        }
+        target = target.parentNode
+      }
+      return window
+    },
     initPullTop () {
       this.$el.addEventListener('touchstart', this.touchStartCB)
       this.$el.addEventListener('touchmove', this.touchMoveCB)
@@ -133,23 +153,22 @@ export default {
       this.$el.removeEventListener('touchend', this.touchEndCB)
     },
     initPullBottom () {
-      this.$root.$el.addEventListener('scroll', this.onScroll)
+      this.scrollTarget.addEventListener('scroll', this.onScroll)
     },
     destoryBottomEvent () {
-      this.$root.$el.removeEventListener('scroll', this.onScroll)
+      this.scrollTarget.removeEventListener('scroll', this.onScroll)
     },
     touchStartCB (event) {
       if (this.onTopLoading) {
         event.preventDefault
         return false
       }
-      this.fromTop = this.$root.$el.scrollTop < 10
+      this.fromTop = this.scrollTarget.scrollTop < 10
       if (!this.fromTop) {
         return
       }
       let startY = event.targetTouches[0].clientY
       this.startY = startY
-      return false
     },
     touchMoveCB (event) {
       if (this.onTopLoading) {
@@ -159,9 +178,13 @@ export default {
         return
       }
       let nowY = event.changedTouches[0].clientY
-      if ((nowY - this.startY) < 0) {
+      if ((nowY - this.startY) >= 0) {
+        event.preventDefault()
+      }
+      if ((nowY - this.startY) <= 0) {
         this.topState = 'pull'
-        nowY = this.startY
+        this.pullMove = `transform:translate3d(0,0,0)`
+        return
       }
       if ((nowY - this.startY) < this.pullDistanceCopy) {
         this.topState = 'pull'
@@ -169,14 +192,10 @@ export default {
       if ((nowY - this.startY) >= this.pullDistanceCopy) {
         this.topState = 'able'
       }
-      if ((nowY - this.startY) > this.pullDistanceCopy * 1.2) {
-        nowY = this.startY + this.pullDistanceCopy * 1.2
-      }
       this.pullMove = `transform:translate3d(0,${nowY - this.startY}px,0)`
-      if ((nowY - this.startY) >= 0) {
-        event.preventDefault()
+      if ((nowY - this.startY) > this.pullDistanceCopy * 1.2) {
+        this.pullMove = `transform:translate3d(0,${this.pullDistanceCopy * 1.2}px,0)`
       }
-      return false
     },
     touchEndCB (event) {
       if (this.onTopLoading) {
@@ -186,6 +205,10 @@ export default {
         return
       }
       if (this.topState === 'able') {
+        let height = Number.parseFloat(window.getComputedStyle(this.$refs.topWrapper).height)
+        console.log(height)
+        this.pullMoveHeight = `height:${height + Number(this.pullMove.match(/,(.*?)px,/)[1])}px`
+        this.pullMove = `transform:translate3d(0,0,0)`
         this.topState = 'wait'
         this.onTopLoading = true
         this.topCB()
@@ -198,6 +221,8 @@ export default {
       this.onTopLoading = false
       this.fromTop = false
       this.startY = 0
+      this.topState = 'pull'
+      this.pullMoveHeight = ''
       this.pullMove = `transform:translate3d(0,0,0)`
     },
     topAllEnd () {
@@ -206,7 +231,7 @@ export default {
       }, 500)
     },
     onScroll () {
-      let eventEl = this.$root.$el
+      let eventEl = this.scrollTarget
       if (!this.onBottomLoading && eventEl.scrollHeight <= eventEl.clientHeight + eventEl.scrollTop + 1) {
         this.onBottomLoading = true
         this.bottomCB()
@@ -232,6 +257,7 @@ export default {
     }
   },
   mounted () {
+    this.scrollTarget = this.getScrollEl(this.$el)
     if (this.topCB) {
       this.initPullTop()
       if (this.pullDistance <= 70) {
