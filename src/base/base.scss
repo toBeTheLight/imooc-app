@@ -1,1 +1,7 @@
 $px:0.01rem;
+@mixin icon-bg ($width, $height, $url) {
+  width: $width*$px;
+  height: $height*$px;
+  background-image: url($url);
+  background-size: cover;
+}
