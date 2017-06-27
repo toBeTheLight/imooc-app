@@ -56,7 +56,7 @@ export default {
         {
           title: '首页',
           icon: 'icon-home',
-          to: 'home'
+          to: 'index'
         },
         {
           title: '课程',

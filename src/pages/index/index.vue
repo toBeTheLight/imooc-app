@@ -2,7 +2,7 @@
   <div class="index">
     <headTitle :title="title"></headTitle>
     <pullLoad :topCB="refreshAll" :bottomCB="loadBottom" ref="pullLoad">
-      <swiper></swiper>
+      <swiper :swiperData="swiper"></swiper>
       <indexNav></indexNav>
       <!-- 课程推荐  -->
       <section class="class two-item">
@@ -81,9 +81,8 @@
 </template>
 
 <script>
-  import {headTitle, pullLoad, footerNav} from '../../components'
+  import {headTitle, pullLoad, footerNav, swiper} from '../../components'
   import {getLocal, setLocal} from '../../service/storage'
-  import swiper from './children/swiper'
   import indexNav from './children/indexNav'
   import itemTwo from './children/itemTwo'
   import itemOne from './children/itemOne'
@@ -93,6 +92,7 @@
     data () {
       return {
         title: '首页',
+        swiper: [],
         classInfo: [],
         wayInfo: [],
         codingInfo: [],
@@ -102,6 +102,18 @@
       }
     },
     methods: {
+      initSwiper () {
+        this.swiper = JSON.parse(getLocal('INDEX_SWIPER'))
+      },
+      async getIndexSwiper () {
+        let res = await indexData.getIndexSwiper()
+        if (res.state === 1) {
+          if (JSON.stringify(res.result) === JSON.stringify(this.swiper)) {
+            return
+          }
+          this.swiper = res.result
+        }
+      },
       initClass () {
         this.classInfo = JSON.parse(getLocal('INDEX_CLASS_INFO'))
         // this.changeClass()
@@ -123,7 +135,6 @@
       },
       async changeClass () {
         let res = await indexData.getIndexClassInfo()
-        console.log(res)
         if (res.state === 1) {
           this.classInfo = res.result
           setLocal('INDEX_CLASS_INFO', JSON.stringify(res.result))
@@ -157,7 +168,6 @@
           if (this.likeInfo) {
             this.likeInfo = this.likeInfo.concat(res.result)
           } else {
-            console.log('加载')
             this.likeInfo = res.result
           }
           this.$refs.pullLoad.bottomLoadEnd()
@@ -182,6 +192,7 @@
       }
     },
     created () {
+      this.initSwiper()
       this.initClass()
       this.initWay()
       this.initCoding()

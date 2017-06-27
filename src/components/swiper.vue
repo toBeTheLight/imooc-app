@@ -1,7 +1,7 @@
 <template>
   <div class="swiper-container">
     <div class="swiper-wrapper">
-      <div class="swiper-slide" v-if="indexSwiper" v-for="item in indexSwiper">
+      <div class="swiper-slide" v-if="swiperData" v-for="item in swiperData">
         <a :href="item.url">
           <img :src="item.img" alt="">
         </a>
@@ -33,23 +33,25 @@
 <script>
 import '@/assets/style/swiper.min.css'
 import '@/assets/script/swiper.min.js'
-import { mapGetters, mapActions } from 'vuex'
+// import { mapGetters, mapActions } from 'vuex'
 export default {
   name: 'swiper',
+  props: ['swiperData'],
   data () {
     return {
       swiper: null
+      // swiper: null
     }
   },
   computed: {
-    ...mapGetters([
-      'indexSwiper'
-    ])
+    // ...mapGetters([
+    //   'indexSwiper'
+    // ])
   },
   methods: {
-    ...mapActions([
-      'getIndexSwiper'
-    ]),
+    // ...mapActions([
+    //   'getIndexSwiper'
+    // ]),
     init: function () {
       if (this.swiper) {
         this.swiper.update()
@@ -67,7 +69,7 @@ export default {
     }
   },
   watch: {
-    indexSwiper: function (value, oldValue) {
+    swiperData: function (value, oldValue) {
       this.$nextTick(function () {
         this.init()
       })
@@ -75,8 +77,11 @@ export default {
   },
   updated () {
   },
-  created () {
-    this.getIndexSwiper()
+  mounted () {
+    this.$nextTick(function () {
+      this.init()
+    })
+    // this.getIndexSwiper()
   }
 }
 </script>

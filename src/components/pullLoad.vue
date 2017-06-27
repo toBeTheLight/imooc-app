@@ -153,10 +153,10 @@ export default {
       this.$el.removeEventListener('touchend', this.touchEndCB)
     },
     initPullBottom () {
-      this.scrollTarget.addEventListener('scroll', this.onScroll)
+      this.scrollTarget.addEventListener('scroll', this.onScroll, false)
     },
     destoryBottomEvent () {
-      this.scrollTarget.removeEventListener('scroll', this.onScroll)
+      this.scrollTarget.removeEventListener('scroll', this.onScroll, false)
     },
     touchStartCB (event) {
       if (this.onTopLoading) {
