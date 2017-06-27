@@ -9,7 +9,10 @@
           <h3 v-text="info.title"></h3>
           <p class="des" >{{info.des | cutTo15}}</p>
       </div>
-      <p class="num" v-text="info.studentsCount+'人学习'"></p>
+      <div class="num-price-wrapper">
+        <p class="num" v-text="info.studentsCount+'人学习'"></p>
+        <p class="price" v-if="info.price">￥{{info.price}}</p>
+      </div>
     </li>
 </template>
 
@@ -29,6 +32,7 @@
     line-height: 71*$px;
     box-sizing: border-box;
     padding: 0 20*$px;
+    color: white;
     .tags-wrapper{
       height: 100%;
       overflow: hidden;
@@ -53,12 +57,15 @@
     &.android {
       background: linear-gradient(270deg,rgba(0,185,90,.7),#00b95a);
     }
+    &.python {
+      background: linear-gradient(270deg,rgba(75,150,220,.7),#4b96dc);
+    }
   }
   .content{
     position: relative;
     padding: 20*$px 23*$px 0;
     background-color: white;
-    height: 160*$px;
+    height: 170*$px;
     box-sizing: border-box;
     h3{
       font-size: 28*$px;
@@ -70,9 +77,16 @@
       color: #adb2b7;
     }
   }
-  .num{
+  .num-price-wrapper{
+    display: flex;
+    justify-content: space-between;
     padding: 0 23*$px;
+  }
+  .num{
     color: #4b535a;
+  }
+  .price{
+    color: #ff0e36;
   }
 </style>
 

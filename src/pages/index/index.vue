@@ -30,6 +30,51 @@
           </template>
         </ul>
       </section>
+      <!-- 今日推荐 -->
+      <section>
+        <!-- <router-link > -->
+          <div class="recommend">
+            <p class="main">基于实战的Python学习之路</p>
+            <p class="sub">体验Python爬虫乐趣，学习Python高级教程，顺利进阶</p>
+          </div>
+        <!-- </router-link> -->
+      </section>
+      <!-- 实战推荐  -->
+      <section class="coding two-item">
+        <h2>
+          <i></i>
+          <p>实战推荐</p>
+        </h2>
+        <span class="change" @click="changeCoding">换一换</span>
+        <ul>
+          <template v-for="(info, index) in codingInfo" >
+            <itemTwo :info="info" key="index"></itemTwo>
+          </template>
+        </ul>
+      </section>
+      <!-- 新课推荐 -->
+      <section class="new one-item">
+        <h2>
+          <i></i>
+          <p>新课上架</p>
+        </h2>
+        <ul>
+          <template v-for="(info, index) in newInfo" >
+            <itemOne :info="info" key="index"></itemOne>
+          </template>
+        </ul>
+      </section>
+      <section class="like two-item">
+        <h2>
+          <i></i>
+          <p>猜你喜欢</p>
+        </h2>
+        <ul>
+          <template v-for="(info, index) in likeInfo" >
+            <itemTwo :info="info" key="index"></itemTwo>
+          </template>
+        </ul>
+      </section>
     </pullLoad>
     <footerNav :title="title"></footerNav>
   </div>
@@ -37,6 +82,7 @@
 
 <script>
   import {headTitle, pullLoad, footerNav} from '../../components'
+  import {getLocal, setLocal} from '../../service/storage'
   import swiper from './children/swiper'
   import indexNav from './children/indexNav'
   import itemTwo from './children/itemTwo'
@@ -47,35 +93,104 @@
     data () {
       return {
         title: '首页',
-        classInfo: null,
-        wayInfo: null
+        classInfo: [],
+        wayInfo: [],
+        codingInfo: [],
+        newInfo: [],
+        likeInfo: [],
+        likePageNum: 1
       }
     },
     methods: {
+      initClass () {
+        this.classInfo = JSON.parse(getLocal('INDEX_CLASS_INFO'))
+        // this.changeClass()
+      },
+      initWay () {
+        this.wayInfo = JSON.parse(getLocal('INDEX_WAY_INFO'))
+        // this.changeWay()
+      },
+      initCoding () {
+        this.codingInfo = JSON.parse(getLocal('INDEX_CODING_INFO'))
+        // this.changeCoding()
+      },
+      initNew () {
+        this.newInfo = JSON.parse(getLocal('INDEX_NEW_INFO'))
+      },
+      initLike () {
+        this.likeInfo = JSON.parse(getLocal('INDEX_LIKE_INFO'))
+        this.changeLike()
+      },
       async changeClass () {
-        this.classInfo = (await indexData.getIndexClassInfo()).result
+        let res = await indexData.getIndexClassInfo()
+        console.log(res)
+        if (res.state === 1) {
+          this.classInfo = res.result
+          setLocal('INDEX_CLASS_INFO', JSON.stringify(res.result))
+        }
       },
       async changeWay () {
-        this.wayInfo = (await indexData.getIndexWayInfo()).result
+        let res = await indexData.getIndexWayInfo()
+        if (res.state === 1) {
+          this.wayInfo = res.result
+          setLocal('INDEX_WAY_INFO', JSON.stringify(res.result))
+        }
+      },
+      async changeCoding () {
+        let res = await indexData.getIndexCodingInfo()
+        if (res.state === 1) {
+          this.codingInfo = res.result
+          setLocal('INDEX_CODING_INFO', JSON.stringify(res.result))
+        }
+      },
+      async changeNew () {
+        let res = await indexData.getIndexNewInfo()
+        if (res.state === 1) {
+          this.newInfo = res.result
+          setLocal('INDEX_NEW_INFO', JSON.stringify(res.result))
+        }
+      },
+      async changeLike () {
+        let res = await indexData.getIndexLikeInfo(this.likePageNum)
+        if (res.state === 1) {
+          this.likePageNum ++
+          if (this.likeInfo) {
+            this.likeInfo = this.likeInfo.concat(res.result)
+          } else {
+            console.log('加载')
+            this.likeInfo = res.result
+          }
+          this.$refs.pullLoad.bottomLoadEnd()
+        }
+        if (this.likePageNum === 30) {
+          this.$refs.pullLoad.bottomAllEnd()
+          return
+        }
       },
       refreshAll () {
         setTimeout(() => {
+          this.changeClass()
+          this.changeCoding()
+          this.changeWay()
+          this.changeNew()
           this.$refs.pullLoad.topLoadEnd()
-          this.$refs.pullLoad.topAllEnd()
-          alert('下拉刷新无接口')
+          // this.$refs.pullLoad.topAllEnd()
         }, 2000)
       },
       loadBottom () {
-        setTimeout(() => {
-          this.$refs.pullLoad.bottomLoadEnd()
-          this.$refs.pullLoad.bottomAllEnd()
-          alert('上拉加载无接口')
-        }, 2000)
+        this.changeLike()
       }
     },
     created () {
+      this.initClass()
+      this.initWay()
+      this.initCoding()
+      // this.initNew()
+      this.initLike()
       this.changeClass()
       this.changeWay()
+      this.changeCoding()
+      this.changeNew()
     },
     components: {
       headTitle,
@@ -100,7 +215,31 @@
     padding-bottom: 104*$px;
 
   }
+  .recommend{
+    box-sizing: border-box;
+    height: 160*$px;
+    width: 670*$px;
+    padding: 37*$px 0;
+    border-radius: 10*$px;
+    margin: 37*$px auto 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: linear-gradient(270deg, rgba(0, 0, 0, 0.3), rgba(50, 50, 50, .3));
+    p{
+      text-align: center;
+      color: white;
+    }
+    .main{
+      font-size: 40*$px;
+    }
+    .sub{
+      font-size: 20*$px;
+      transform: scale(.8);
+    }
+  }
   section{
+    user-select: none;
     position: relative;
     h2{
       display: flex;
@@ -116,6 +255,7 @@
     }
     .change{
       position: absolute;
+      user-select: none;
       right: .3rem;
       top: .4rem;
       color: #b4b8bc;
@@ -146,6 +286,21 @@
   .way{
     i{
       @include icon-bg(27,27,'../../assets/images/index/icon-way-h1.png');
+    }
+  }
+  .coding{
+    i{
+      @include icon-bg(27,27,'../../assets/images/index/icon-coding-h1.png');
+    }
+  }
+  .new{
+    i{
+      @include icon-bg(27,27,'../../assets/images/index/icon-new-h1.png');
+    }
+  }
+  .like{
+    i{
+      @include icon-bg(27,27,'../../assets/images/index/icon-like-h1.png');
     }
   }
 </style>

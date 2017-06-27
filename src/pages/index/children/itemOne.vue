@@ -9,8 +9,8 @@
         <h3 v-text="info.title"></h3>
         <p class="des" v-text="info.des"></p>
         <p>
-          <span>{{info.classCount}}门课</span><span>/</span><span>{{info.studentsCount}}人学习</span>
-          <span class="price">￥{{info.price}}</span>
+          <span v-if="info.classCount">{{info.classCount}}门课/</span><span v-if="info.studentsCount">{{info.studentsCount}}人学习</span>
+          <span class="price" v-if="info.price">￥{{info.price}}</span>
         </p>
       </div>
     </li>
@@ -33,7 +33,10 @@
     padding: 20*$px;
     flex-grow: 0;
     flex-shrink:: 0;
+    color: white;
     .tags-wrapper{
+      display: flex;
+      flex-direction: column;
       height: 100%;
       // overflow: hidden;
     }
@@ -56,6 +59,9 @@
     &.android {
       background: linear-gradient(270deg,rgba(0,185,90,.7),#00b95a);
     }
+    &.python {
+      background: linear-gradient(270deg,rgba(75,150,220,.7),#4b96dc);
+    }
   }
   .content{
     display: flex;
@@ -69,7 +75,6 @@
       font-size: 28*$px;
       font-weight: 500;
       line-height: 1.1em;
-      margin-bottom: 13*$px;
     }
     .des{
       color: #adb2b7;

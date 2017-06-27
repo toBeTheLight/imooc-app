@@ -39,28 +39,67 @@ const getIndexSwiper = () => {
     }, 10)
   })
 }
-
+// 首页课程推荐
 const getIndexClassInfo = () => {
+  let res = JSON.parse(JSON.stringify(allData.indexClassInfo))
+  res.result = randomArray(res.result, 4)
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      let res = JSON.parse(JSON.stringify(allData.indexClassInfo))
-      res.result = randomArray(res.result, 4)
       resolve(res)
     }, 10)
   })
 }
-
+// 首页职业路径
 const getIndexWayInfo = () => {
+  let res = JSON.parse(JSON.stringify(allData.indexWayInfo))
+  res.result = randomArray(res.result, 3)
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      let res = JSON.parse(JSON.stringify(allData.indexWayInfo))
-      res.result = randomArray(res.result, 3)
       resolve(res)
     }, 10)
+  })
+}
+// 首页实战
+const getIndexCodingInfo = () => {
+  let res = JSON.parse(JSON.stringify(allData.indexCodingInfo))
+  res.result = randomArray(res.result, 6)
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(res)
+    }, 10)
+  })
+}
+// 首页新课上架
+const getIndexNewInfo = () => {
+  let res = JSON.parse(JSON.stringify(allData.indexNewInfo))
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(res)
+    })
+  })
+}
+const getIndexLikeInfo = () => {
+  let classInfo = JSON.parse(JSON.stringify(allData.indexClassInfo))
+  let wayInfo = JSON.parse(JSON.stringify(allData.indexWayInfo))
+  let codingInfo = JSON.parse(JSON.stringify(allData.indexCodingInfo))
+  let newInfo = JSON.parse(JSON.stringify(allData.indexNewInfo))
+  let result = classInfo.result.concat(wayInfo.result).concat(codingInfo.result).concat(newInfo.result)
+  let res = {
+    state: 1,
+    result: result
+  }
+  res.result = randomArray(res.result, 6)
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(res)
+    })
   })
 }
 export default {
   getIndexSwiper,
   getIndexClassInfo,
-  getIndexWayInfo
+  getIndexWayInfo,
+  getIndexCodingInfo,
+  getIndexNewInfo,
+  getIndexLikeInfo
 }
