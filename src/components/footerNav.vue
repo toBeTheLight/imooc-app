@@ -14,10 +14,8 @@
 <style lang="scss" scoped>
   @import "src/base/base";
   footer{
-    position: fixed;
+  	flex: none;
     width: 100%;
-    bottom: 0;
-    left: 0;
   }
   ul{
     display: flex;

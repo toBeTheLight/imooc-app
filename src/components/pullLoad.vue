@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="touch-area" :style="pullMove">
-    <div v-if="topCB" class="state-wrapper" :style="pullMoveHeight" ref="topWrapper">
+    <div v-if="topCB" class="state-wrapper" :style="onLoadingStyle" ref="topWrapper">
       <div v-show="topState=='pull'" class="state">
         <div class="pull">
           <i></i>
@@ -43,15 +43,20 @@
   50%{width: 30*$px}
   to{width: 4*$px}
 }
+.touch-area {
+	position: relative;
+}
 .state-wrapper{
-  position: relative;
+  position: absolute;
+  top: -118*$px;
+  left: 0;
+  width: 100%;
   height: 118*$px;
+  background-color: #F3F5F9;
 }
 .state{
-  position: absolute;
-  height: 118*$px;
+  height: 100%;
   width: 100%;
-  bottom: 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -120,7 +125,7 @@ export default {
       fromTop: false,
       startY: '',
       pullMove: '',
-      pullMoveHeight: '',
+      onLoadingStyle: '',
       topState: 'pull',
       onTopLoading: false,
       topAllLoad: false,
@@ -205,10 +210,7 @@ export default {
         return
       }
       if (this.topState === 'able') {
-        let height = Number.parseFloat(window.getComputedStyle(this.$refs.topWrapper).height)
-        console.log(height)
-        this.pullMoveHeight = `height:${height + Number(this.pullMove.match(/,(.*?)px,/)[1])}px`
-        this.pullMove = `transform:translate3d(0,0,0)`
+        this.onLoadingStyle = `position: fixed;top:-1.18rem;z-index:100`
         this.topState = 'wait'
         this.onTopLoading = true
         this.topCB()
@@ -222,7 +224,7 @@ export default {
       this.fromTop = false
       this.startY = 0
       this.topState = 'pull'
-      this.pullMoveHeight = ''
+      this.onLoadingStyle = ''
       this.pullMove = `transform:translate3d(0,0,0)`
     },
     topAllEnd () {

@@ -31,3 +31,25 @@ p{
   transform: translate3d(0, 100%, 0);
   opacity: 0;
 }
+
+.right-enter-active,
+.right-leave-active{
+  transition: all .5s ease;
+}
+.right-enter{
+  transform: translate3d(100%, 0, 0);
+}
+.right-leave-to{
+  transform: translate3d(100%, 0, 0);
+}
+
+.keep-enter-active,
+.keep-leave-active{
+  transition: all .5s ease;
+}
+.keep-enter{
+  transform: translate3d(0, 0, 0);
+}
+.keep-leave-to{
+  transform: translate3d(0, 0, 0);
+}

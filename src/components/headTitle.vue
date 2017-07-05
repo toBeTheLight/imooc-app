@@ -25,8 +25,8 @@ export default {
 <style lang="scss" scoped>
   @import "src/base/base";
   header{
-    position: fixed;
     display: flex;
+    flex: none;
     justify-content: space-between;
     height: 118*$px;
     width: 100%;

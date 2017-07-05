@@ -35,6 +35,11 @@ export default new Router({
       path: '/index',
       name: 'index',
       component: resolve => require(['@/pages/index/index.vue'], resolve)
+    },
+    {
+      path: '/coding',
+      name: 'coding',
+      component: resolve => require(['@/pages/coding/coding.vue'], resolve)
     }
   ]
 })

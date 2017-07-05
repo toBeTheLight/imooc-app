@@ -1,82 +1,84 @@
 <template lang="html">
   <div class="index">
-    <headTitle :title="title"></headTitle>
-    <pullLoad :topCB="refreshAll" :bottomCB="loadBottom" ref="pullLoad">
-      <swiper :swiperData="swiper"></swiper>
-      <indexNav></indexNav>
-      <!-- 课程推荐  -->
-      <section class="class two-item">
-        <h2>
-          <i></i>
-          <p>课程推荐</p>
-        </h2>
-        <span class="change" @click="changeClass">换一换</span>
-        <ul>
-          <template v-for="(info, index) in classInfo" >
-            <itemTwo :info="info" key="index"></itemTwo>
-          </template>
-        </ul>
-      </section>
-      <!-- 职业路径  -->
-      <section class="way one-item">
-        <h2>
-          <i></i>
-          <p>职业路径</p>
-        </h2>
-        <span class="change" @click="changeWay">换一换</span>
-        <ul>
-          <template v-for="(info, index) in wayInfo" >
-            <itemOne :info="info" key="index"></itemOne>
-          </template>
-        </ul>
-      </section>
-      <!-- 今日推荐 -->
-      <section>
-        <!-- <router-link > -->
-          <div class="recommend">
-            <p class="main">基于实战的Python学习之路</p>
-            <p class="sub">体验Python爬虫乐趣，学习Python高级教程，顺利进阶</p>
-          </div>
-        <!-- </router-link> -->
-      </section>
-      <!-- 实战推荐  -->
-      <section class="coding two-item">
-        <h2>
-          <i></i>
-          <p>实战推荐</p>
-        </h2>
-        <span class="change" @click="changeCoding">换一换</span>
-        <ul>
-          <template v-for="(info, index) in codingInfo" >
-            <itemTwo :info="info" key="index"></itemTwo>
-          </template>
-        </ul>
-      </section>
-      <!-- 新课推荐 -->
-      <section class="new one-item">
-        <h2>
-          <i></i>
-          <p>新课上架</p>
-        </h2>
-        <ul>
-          <template v-for="(info, index) in newInfo" >
-            <itemOne :info="info" key="index"></itemOne>
-          </template>
-        </ul>
-      </section>
-      <section class="like two-item">
-        <h2>
-          <i></i>
-          <p>猜你喜欢</p>
-        </h2>
-        <ul>
-          <template v-for="(info, index) in likeInfo" >
-            <itemTwo :info="info" key="index"></itemTwo>
-          </template>
-        </ul>
-      </section>
-    </pullLoad>
-    <footerNav :title="title"></footerNav>
+    <headTitle :title="title" class="top"></headTitle>
+    <div class="content">
+	    <pullLoad :topCB="refreshAll" :bottomCB="loadBottom" ref="pullLoad">
+	      <swiper :swiperData="swiper"></swiper>
+	      <indexNav></indexNav>
+	      <!-- 课程推荐  -->
+	      <section class="class two-item">
+	        <h2>
+	          <i></i>
+	          <p>课程推荐</p>
+	        </h2>
+	        <span class="change" @click="changeClass">换一换</span>
+	        <ul>
+	          <template v-for="(info, index) in classInfo" >
+	            <itemTwo :info="info" key="index"></itemTwo>
+	          </template>
+	        </ul>
+	      </section>
+	      <!-- 职业路径  -->
+	      <section class="way one-item">
+	        <h2>
+	          <i></i>
+	          <p>职业路径</p>
+	        </h2>
+	        <span class="change" @click="changeWay">换一换</span>
+	        <ul>
+	          <template v-for="(info, index) in wayInfo" >
+	            <itemOne :info="info" key="index"></itemOne>
+	          </template>
+	        </ul>
+	      </section>
+	      <!-- 今日推荐 -->
+	      <section>
+	        <!-- <router-link > -->
+	          <div class="recommend">
+	            <p class="main">基于实战的Python学习之路</p>
+	            <p class="sub">体验Python爬虫乐趣，学习Python高级教程，顺利进阶</p>
+	          </div>
+	        <!-- </router-link> -->
+	      </section>
+	      <!-- 实战推荐  -->
+	      <section class="coding two-item">
+	        <h2>
+	          <i></i>
+	          <p>实战推荐</p>
+	        </h2>
+	        <span class="change" @click="changeCoding">换一换</span>
+	        <ul>
+	          <template v-for="(info, index) in codingInfo" >
+	            <itemTwo :info="info" key="index"></itemTwo>
+	          </template>
+	        </ul>
+	      </section>
+	      <!-- 新课推荐 -->
+	      <section class="new one-item">
+	        <h2>
+	          <i></i>
+	          <p>新课上架</p>
+	        </h2>
+	        <ul>
+	          <template v-for="(info, index) in newInfo" >
+	            <itemOne :info="info" key="index"></itemOne>
+	          </template>
+	        </ul>
+	      </section>
+	      <section class="like two-item">
+	        <h2>
+	          <i></i>
+	          <p>猜你喜欢</p>
+	        </h2>
+	        <ul>
+	          <template v-for="(info, index) in likeInfo" >
+	            <itemTwo :info="info" key="index"></itemTwo>
+	          </template>
+	        </ul>
+	      </section>
+	    </pullLoad>
+    </div>
+    <footerNav :title="title" class="footer"></footerNav>
   </div>
 </template>
 
@@ -221,10 +223,14 @@
     height: 100%;
     width: 100%;
     box-sizing: border-box;
+    display:flex;
+    flex-direction: column;
     overflow: auto;
     background-color: #f3f5f7;
-    padding-bottom: 104*$px;
-
+  }
+  .content{
+  	flex: auto;
+  	overflow: auto;
   }
   .recommend{
     box-sizing: border-box;

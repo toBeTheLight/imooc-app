@@ -1,10 +1,10 @@
 <template>
   <transition name="rightbottomopacity">
-  <div class="account">
-    <i class="iconfont icon-guanbifuzhi" @click="backSource"></i>
-    <h1 v-text="accountTitle"></h1>
-    <router-view></router-view>
-  </div>
+    <div class="account">
+      <i class="iconfont icon-guanbifuzhi" @click="backSource"></i>
+      <h1 v-text="accountTitle"></h1>
+      <router-view></router-view>
+    </div>
   </transition>
 </template>
 
