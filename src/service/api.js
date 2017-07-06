@@ -237,7 +237,44 @@ export const indexNewInfo = {
     }
   ]
 }
+
 // 首页猜你喜欢
 export const indexLikeInfo = {
 // 暂用其他数据
+}
+
+// coding页 导航内容
+
+export const codingNav = {
+  state: 1,
+  result: [
+    {
+      name: '全部',
+      codingType: '0'
+    },
+    {
+      name: '前端开发',
+      codingType: '1'
+    },
+    {
+      name: '后端开发',
+      codingType: '2'
+    },
+    {
+      name: '移动开发',
+      codingType: '3'
+    },
+    {
+      name: '数据库',
+      codingType: '4'
+    },
+    {
+      name: '云计算&大数据',
+      codingType: '5'
+    },
+    {
+      name: '运维&测试',
+      codingType: '6'
+    }
+  ]
 }

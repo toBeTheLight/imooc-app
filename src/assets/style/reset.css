@@ -3,7 +3,7 @@
     padding: 0
 }
 a{
-  -webkit-tap-highlight-color:transparent
+  -webkit-tap-highlight-color:transparent;
 }
 fieldset,img {
     border: 0

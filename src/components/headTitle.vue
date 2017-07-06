@@ -1,6 +1,6 @@
 <template lang="html">
   <header>
-    <span class="page-name" >{{title}}</span>
+    <span class="page-name" v-text="title"></span>
     <div class="function">
       <router-link to="search">
         <i class="iconfont icon-search"></i>

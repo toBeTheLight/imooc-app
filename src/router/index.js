@@ -10,6 +10,7 @@ export default new Router({
     //   path: '',
     //   redirect: '/index'
     // },
+    // 注册页
     {
       path: '/account',
       name: 'account',
@@ -31,15 +32,19 @@ export default new Router({
         }
       ]
     },
+    // 主页
     {
       path: '/index',
       name: 'index',
-      component: resolve => require(['@/pages/index/index.vue'], resolve)
+      component: resolve => require(['@/pages/index/index.vue'], resolve),
+      meta: {keepAlive: true}
     },
+    // 实战
     {
       path: '/coding',
       name: 'coding',
-      component: resolve => require(['@/pages/coding/coding.vue'], resolve)
+      component: resolve => require(['@/pages/coding/coding.vue'], resolve),
+      meta: {keepAlive: true}
     }
   ]
 })
