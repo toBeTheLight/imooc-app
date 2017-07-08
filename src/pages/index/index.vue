@@ -84,10 +84,8 @@
 
 <script>
   import {headTitle, pullLoad, footerNav, swiper} from '../../components'
+  import {indexNav, itemOne, itemTwo} from './children'
   import {getLocal, setLocal} from '../../service/storage'
-  import indexNav from './children/indexNav'
-  import itemTwo from './children/itemTwo'
-  import itemOne from './children/itemOne'
   import indexData from '../../service/index/getData'
   export default {
     name: 'index',

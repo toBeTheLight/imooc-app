@@ -25,11 +25,11 @@
 </template>
 
 <script>
-import {pullLoad, swiper, headBack} from '../../components'
+import {pullLoad, swiper} from '../../components'
+import {itemOne, headBack} from './children'
 import indexData from '../../service/index/getData'
 import codingData from '../../service/coding/getData'
 import {getLocal, setLocal} from '../../service/storage'
-import itemOne from './children/itemOne.vue'
 
 export default {
   name: 'coding',
