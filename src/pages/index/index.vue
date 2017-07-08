@@ -114,6 +114,7 @@
             return
           }
           this.swiper = res.result
+          setLocal('INDEX_SWIPER', JSON.stringify(res.result))
         }
       },
       initClass () {
@@ -198,6 +199,7 @@
       this.initClass()
       this.initWay()
       this.initCoding()
+      this.getIndexSwiper()
       // this.initNew()
       this.initLike()
       this.changeClass()

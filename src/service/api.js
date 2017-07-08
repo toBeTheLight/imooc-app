@@ -146,6 +146,7 @@ export const indexCodingInfo = {
       title: 'Android网络层架构设计实战',
       des: '设计实现完全解耦合、灵活扩展的网络框架。打造属于自己的框架',
       studentsCount: 398,
+      codingType: 1,
       price: 188.00,
       type: 'coding'
     },
@@ -155,6 +156,7 @@ export const indexCodingInfo = {
       title: 'ES6零基础教学 解析彩票项目',
       des: 'ES6从零开始，量身设计的迷你案例，让你全面掌握ES6',
       studentsCount: 593,
+      codingType: 1,
       price: 188.00,
       type: 'coding'
     },
@@ -164,6 +166,7 @@ export const indexCodingInfo = {
       title: '微信小程序入门与实战常用组件',
       des: '[官方同步]学会小程序开发，一个集阅读与电影于一体的小程序实战',
       studentsCount: 5911,
+      codingType: 2,
       price: 149.00,
       type: 'coding'
     },
@@ -173,6 +176,7 @@ export const indexCodingInfo = {
       title: 'Android应用发展趋势必备武器',
       des: '掌握当下Android最流行的技术，助你达到阿里P5级别',
       studentsCount: 106,
+      codingType: 3,
       price: 248.00,
       type: 'coding'
     },
@@ -182,6 +186,7 @@ export const indexCodingInfo = {
       title: 'Vue2.0 + Node.js + MongoDB全栈',
       des: '从前端入门全栈，让你的未来更宽广',
       studentsCount: 79,
+      codingType: 4,
       price: 348.00,
       type: 'coding'
     },
@@ -191,6 +196,7 @@ export const indexCodingInfo = {
       title: 'Java SSM开发大众点评后端',
       des: 'SSM全面梳理，前后端分离，zTree和复杂SQL打造权限系统，解惑MyBatis和ResTful',
       studentsCount: 150,
+      codingType: 5,
       price: 248.00,
       type: 'coding'
     },
@@ -200,6 +206,7 @@ export const indexCodingInfo = {
       title: 'iOS架构初探',
       des: 'iOS视频教程教你轻松搞定各种架构模式设计模式的学习，如MVC、MVVM等',
       studentsCount: 13178,
+      codingType: 6,
       price: 100.00,
       type: 'coding'
     }

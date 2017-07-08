@@ -6,12 +6,19 @@
 	      <swiper :swiperData="swiper" :backUrl='backUrl' ></swiper>
 	      <nav>
 	        <ul class="coding-nav">
-	        	<li v-for="(item, index) in navList" :class="index == activeListNth ? 'active' : ''" v-text="item.name" @click="listToActive(item.codingType, index)"></li>
+	        	<li v-for="(item, index) in navList"  :class="index == activeListNth ? 'active' : ''" v-text="item.name" @click="listToActive(item.codingType, index)"></li>
 	           <span></span>
 	           <span></span>
 	           <span></span>
 	        </ul>
 	      </nav>
+	      <section>
+	        <ul>
+	          <template v-for="(item ,index) in activeList">
+	            <itemOne :info="item"></itemOne>
+	          </template>
+	        </ul>
+	      </section>
 	    </pullLoad>
     </div>
   </div>
@@ -22,6 +29,7 @@ import {pullLoad, swiper, headBack} from '../../components'
 import indexData from '../../service/index/getData'
 import codingData from '../../service/coding/getData'
 import {getLocal, setLocal} from '../../service/storage'
+import itemOne from './children/itemOne.vue'
 
 export default {
   name: 'coding',
@@ -31,13 +39,30 @@ export default {
       backUrl: 'index',
       title: '实战课程',
       navList: [],
+      codingList: [],
       activeListNth: 0
     }
   },
   components: {
     headBack,
     pullLoad,
-    swiper
+    swiper,
+    itemOne
+  },
+  computed: {
+    activeList () {
+      let temp = []
+      if (!this.activeListNth) {
+        return this.codingList
+      } else {
+        for (let value of this.codingList) {
+          if (value.codingType === this.activeListNth) {
+            temp.push(value)
+          }
+        }
+      }
+      return temp
+    }
   },
   methods: {
     initSwiper () {
@@ -46,7 +71,6 @@ export default {
     async getCodingNav () {
       try {
         let res = await codingData.getCodingNav()
-        console.log(res)
         if (res.state === 1) {
           this.navList = res.result
         }
@@ -61,9 +85,16 @@ export default {
             return
           }
           this.swiper = res.result
-          setLocal('INDEX_SWIPER', res.result)
+          setLocal('INDEX_SWIPER', JSON.stringify(res.result))
         }
       } catch (err) {
+      }
+    },
+    async changeCoding () {
+      let res = await indexData.getIndexCodingInfo()
+      if (res.state === 1) {
+        this.codingList = res.result
+        setLocal('INDEX_CODING_INFO', JSON.stringify(res.result))
       }
     },
     refreshAll () {
@@ -76,12 +107,16 @@ export default {
     listToActive (typeID, index) {
       this.activeListNth = index
       console.log(typeID)
+    },
+    changeActive (type) {
+      this.activeListNth = type
     }
   },
   created () {
     this.initSwiper()
     this.getIndexSwiper()
     this.getCodingNav()
+    this.changeCoding()
   }
 }
 </script>
@@ -89,6 +124,7 @@ export default {
 <style lang="scss" scoped>
 @import "src/base/base";
 .coding{
+  height: 100%;
 	display: flex;
 	flex-direction: column;
 }
@@ -106,6 +142,7 @@ export default {
   li{
     width: 205*$px;
     height: 64*$px;
+    margin: 7*$px 0;
     border-radius: 100*$px;
     color: black;
     border: 1px solid #f8f9fa;
