@@ -234,7 +234,7 @@ export default {
     },
     onScroll () {
       let eventEl = this.scrollTarget
-      if (!this.onBottomLoading && eventEl.scrollHeight <= eventEl.clientHeight + eventEl.scrollTop + 1) {
+      if (!this.onBottomLoading && eventEl.scrollHeight <= eventEl.clientHeight + eventEl.scrollTop + 90) {
         this.onBottomLoading = true
         this.bottomCB()
       }
