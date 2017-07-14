@@ -46,24 +46,6 @@
       display: inline-block;
       margin-right: 17*$px;
     }
-    &.java,&.js {
-      background: linear-gradient(270deg,rgba(255,115,155,.4),#ff739b);
-    }
-    &.php {
-      background: linear-gradient(270deg,rgba(210,115,230,.4),#d273e6);
-    }
-    &.ios {
-      background: linear-gradient(270deg,rgba(0,200,200,.4),#00c8c8);
-    }
-    &.html {
-      background: linear-gradient(270deg,rgba(255,150,0,.4),#ff9600);
-    }
-    &.android {
-      background: linear-gradient(270deg,rgba(0,185,90,.7),#00b95a);
-    }
-    &.python {
-      background: linear-gradient(270deg,rgba(75,150,220,.7),#4b96dc);
-    }
   }
   .content{
     display: flex;

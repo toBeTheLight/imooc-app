@@ -52,7 +52,7 @@ body {
     font: .32rem/1.5 sans-serif,SimSun,Arial
 }
 
-ol,ul {
+li,ol,ul {
     list-style: none
 }
 

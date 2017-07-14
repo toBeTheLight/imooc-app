@@ -45,6 +45,12 @@ export default new Router({
       name: 'coding',
       component: resolve => require(['@/pages/coding/coding.vue'], resolve),
       meta: {keepAlive: true}
+    },
+    {
+      path: '/way',
+      name: 'way',
+      component: resolve => require(['@/pages/way/way.vue'], resolve),
+      meta: {keepAlive: true}
     }
   ]
 })

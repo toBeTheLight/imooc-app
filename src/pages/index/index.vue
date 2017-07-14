@@ -107,12 +107,15 @@
       },
       async getIndexSwiper () {
         let res = await indexData.getIndexSwiper()
-        if (res.state === 1) {
-          if (JSON.stringify(res.result) === JSON.stringify(this.swiper)) {
-            return
+        try {
+          if (res.state === 1) {
+            if (JSON.stringify(res.result) === JSON.stringify(this.swiper)) {
+              return
+            }
+            this.swiper = res.result
+            setLocal('INDEX_SWIPER', JSON.stringify(res.result))
           }
-          this.swiper = res.result
-          setLocal('INDEX_SWIPER', JSON.stringify(res.result))
+        } catch (err) {
         }
       },
       initClass () {

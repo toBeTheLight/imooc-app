@@ -43,6 +43,7 @@ p{
   transform: translate3d(100%, 0, 0);
 }
 
+
 .keep-enter-active,
 .keep-leave-active{
   transition: all .5s ease;
