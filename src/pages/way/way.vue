@@ -1,12 +1,14 @@
 <template lang="html">
-  <div class="way">
-    <headTitle :title="title" :backUrl="backUrl" :style="headStyle" :fade="fade" ref="headTitle"></headTitle>
-    <ul @scroll="onScroll">
-      <template v-for="(item, index) in wayList"> 
-        <itemOne :info="item"></itemOne>
-      </template>
-    </ul>
-  </div>
+  <transition name="right">
+    <div class="way">
+      <headTitle :title="title" :backUrl="backUrl" :style="headStyle" :fade="fade" ref="headTitle"></headTitle>
+      <ul @scroll="onScroll">
+        <template v-for="(item, index) in wayList"> 
+          <itemOne :info="item"></itemOne>
+        </template>
+      </ul>
+    </div>
+  </transition>
 </template>
 <script>
   import {headTitle, itemOne} from './children'
@@ -63,6 +65,8 @@
 <style lang="scss" scoped>
   @import "src/base/base";
   .way{
+    background: white;
+    width: 100%;
     height: 100%;
     overflow: hidden;
   }

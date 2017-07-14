@@ -1,5 +1,6 @@
 <template lang="html">
-  <div class="index">
+  <transition name="keep">
+  	<div class="index">
     <headTitle :title="title" class="top"></headTitle>
     <div class="content">
 	    <pullLoad :topCB="refreshAll" :bottomCB="loadBottom" ref="pullLoad">
@@ -80,6 +81,7 @@
     </div>
     <footerNav :title="title" class="footer"></footerNav>
   </div>
+  </transition>
 </template>
 
 <script>

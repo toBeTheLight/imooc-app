@@ -40,8 +40,9 @@ export default {
     flex: none;
     color: white;
     background-color: #34394b;
-    background-image: url();
     background-size: 100%;
+    transition: height .05s linear;
+    
     .bg-img{
       position: absolute;
       opacity: 1;

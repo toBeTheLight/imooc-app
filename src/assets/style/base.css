@@ -20,37 +20,57 @@ p{
   font-size: .32rem;
 }
 /* router过渡动画*/
+/*右侧进入 从下离开 加透明过渡*/
 .rightbottomopacity-enter-active,
 .rightbottomopacity-leave-active{
+  position: absolute;
+  z-index: 999;
+  will-change: translate3d;
   transition: all .5s ease;
 }
 .rightbottomopacity-enter{
+  position: absolute;
+  z-index: 999;
   transform: translate3d(100%, 0, 0);
 }
 .rightbottomopacity-leave-to{
+  position: absolute;
+  z-index: 999;
   transform: translate3d(0, 100%, 0);
   opacity: 0;
 }
-
+/*右侧进入右侧离开*/
 .right-enter-active,
 .right-leave-active{
+  position: absolute;
+  z-index: 999;
+  will-change: translate3d;
   transition: all .5s ease;
 }
 .right-enter{
+  position: absolute;
+  z-index: 999;
   transform: translate3d(100%, 0, 0);
 }
 .right-leave-to{
+  position: absolute;
+  z-index: 999;
   transform: translate3d(100%, 0, 0);
 }
-
-
+/*主页使用保持不动,避免空白*/
 .keep-enter-active,
 .keep-leave-active{
+  position: absolute;
+  z-index: 10;
   transition: all .5s ease;
 }
 .keep-enter{
+  position: absolute;
+  z-index: 10;
   transform: translate3d(0, 0, 0);
 }
 .keep-leave-to{
+  position: absolute;
+  z-index: 10;
   transform: translate3d(0, 0, 0);
 }

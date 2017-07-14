@@ -1,27 +1,29 @@
 <template lang="html">
-  <div class="coding">
-    <headBack :title="title" :backUrl="backUrl"></headBack>
-    <div class="content">
-	    <pullLoad :topCB="refreshAll" ref="pullLoad">
-	      <swiper :swiperData="swiper" :backUrl='backUrl' ></swiper>
-	      <nav>
-	        <ul class="coding-nav">
-	        	<li v-for="(item, index) in navList"  :class="index == activeListNth ? 'active' : ''" v-text="item.name" @click="listToActive(item.codingType, index)"></li>
-	           <span></span>
-	           <span></span>
-	           <span></span>
-	        </ul>
-	      </nav>
-	      <section>
-	        <ul>
-	          <template v-for="(item ,index) in activeList">
-	            <itemOne :info="item"></itemOne>
-	          </template>
-	        </ul>
-	      </section>
-	    </pullLoad>
+  <transition name="right" mode="in-out">
+    <div class="coding">
+      <headBack :title="title" :backUrl="backUrl"></headBack>
+      <div class="content">
+  	    <pullLoad :topCB="refreshAll" ref="pullLoad">
+  	      <swiper :swiperData="swiper" :backUrl='backUrl' ></swiper>
+  	      <nav>
+  	        <ul class="coding-nav">
+  	        	<li v-for="(item, index) in navList"  :class="index == activeListNth ? 'active' : ''" v-text="item.name" @click="listToActive(item.codingType, index)"></li>
+  	           <span></span>
+  	           <span></span>
+  	           <span></span>
+  	        </ul>
+  	      </nav>
+  	      <section>
+  	        <ul>
+  	          <template v-for="(item ,index) in activeList">
+  	            <itemOne :info="item"></itemOne>
+  	          </template>
+  	        </ul>
+  	      </section>
+  	    </pullLoad>
+      </div>
     </div>
-  </div>
+  </transition>
 </template>
 
 <script>
@@ -127,6 +129,7 @@ export default {
   height: 100%;
 	display: flex;
 	flex-direction: column;
+	background-color: white;
 }
 .content{
 	flex: auto;
