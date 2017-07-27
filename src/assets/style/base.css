@@ -61,16 +61,13 @@ p{
 .keep-enter-active,
 .keep-leave-active{
   position: absolute;
-  z-index: 10;
   transition: all .5s ease;
 }
 .keep-enter{
   position: absolute;
-  z-index: 10;
   transform: translate3d(0, 0, 0);
 }
 .keep-leave-to{
   position: absolute;
-  z-index: 10;
   transform: translate3d(0, 0, 0);
 }

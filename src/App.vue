@@ -1,10 +1,9 @@
 <template>
   <div id="app">
   <!--keep-alive上样式-->
-  <keep-alive>
-    <router-view v-if="$route.meta.keepAlive"></router-view>
-  </keep-alive>
-    <router-view v-if="!$route.meta.keepAlive"></router-view>
+    <keep-alive include="index">
+      <router-view ></router-view>
+    </keep-alive>
   </div>
 </template>
 

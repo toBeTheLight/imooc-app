@@ -36,21 +36,18 @@ export default new Router({
     {
       path: '/index',
       name: 'index',
-      component: resolve => require(['@/pages/index/index.vue'], resolve),
-      meta: {keepAlive: true}
+      component: resolve => require(['@/pages/index/index.vue'], resolve)
     },
     // 实战
     {
       path: '/coding',
       name: 'coding',
-      component: resolve => require(['@/pages/coding/coding.vue'], resolve),
-      meta: {keepAlive: true}
+      component: resolve => require(['@/pages/coding/coding.vue'], resolve)
     },
     {
       path: '/way',
       name: 'way',
-      component: resolve => require(['@/pages/way/way.vue'], resolve),
-      meta: {keepAlive: true}
+      component: resolve => require(['@/pages/way/way.vue'], resolve)
     }
   ]
 })
